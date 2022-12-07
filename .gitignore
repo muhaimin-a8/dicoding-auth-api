@@ -1,0 +1,11 @@
+node_modules/
+package-lock.json
+config/database/test.json
+coverage/
+.vscode/
+.env
+.idea/
+
+# Database
+db/
+db_test/
