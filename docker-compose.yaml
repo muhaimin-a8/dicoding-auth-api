@@ -23,3 +23,11 @@ services:
       - ${PGPORT_TEST}:5432
     volumes:
       - ./db_test:/var/lib/postgresql/data
+volumes:
+  db:
+    driver: local
+  db_test:
+    driver: local
+networks:
+  postgres:
+    driver: bridge
