@@ -4,14 +4,14 @@
   "description": "Auth API for Backend Expert course at Dicoding Indonesia : IDCAMP 2022",
   "main": "./src/app.js",
   "scripts": {
-    "start" : "node ./src/app.js",
-    "start:dev" : "nodemon ./src/app.js",
-    "test" : "jest --setupFiles dotenv/config",
-    "test:watch" : "jest --watchAll --coverage --setupFiles dotenv/config",
-    "migrate" : "node-pg-migrate",
-    "migrate:test" : "node-pg-migrate -f config/database/test.json",
+    "start": "node ./src/app.js",
+    "start:dev": "nodemon ./src/app.js",
+    "test": "jest --setupFiles dotenv/config",
+    "test:watch": "jest --watchAll --coverage --setupFiles dotenv/config",
+    "migrate": "node-pg-migrate",
+    "migrate:test": "node-pg-migrate -f config/database/test.json",
     "lint": "eslint ./src --fix"
-    },
+  },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/muhaimin-a8/dicoding-auth-api.git"
@@ -31,6 +31,7 @@
     "@hapi/jwt": "^3.0.0",
     "bcrypt": "^5.1.0",
     "dotenv": "^16.0.3",
+    "instances-container": "^2.0.6",
     "nanoid": "^3.1.1",
     "pg": "^8.8.0"
   },
@@ -43,8 +44,8 @@
     "node-pg-migrate": "^6.2.2",
     "nodemon": "^2.0.20"
   },
-  "jest" : {
-    "roots" : [
+  "jest": {
+    "roots": [
       "<rootDir>/src"
     ]
   }
