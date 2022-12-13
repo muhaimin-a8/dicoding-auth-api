@@ -11,7 +11,7 @@ class AddUserUseCase {
     await this._userRepository.verifyAvailableUsername(registerUser.username);
     registerUser.password = await this._passwordHash.hash(registerUser.password);
     const registeredUser = await this._userRepository.addUser(registerUser);
-    return this._userRepository.addUser(registeredUser);
+    return registeredUser;
   }
 }
 
