@@ -1,6 +1,4 @@
-/* eslint-disable no-undef */
 /* istanbul ignore file */
-
 const { Pool } = require('pg');
 
 const testConfig = {

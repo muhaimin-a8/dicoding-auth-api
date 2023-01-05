@@ -10,8 +10,7 @@ class AddUserUseCase {
     const registerUser = new RegisterUser(useCasePayload);
     await this._userRepository.verifyAvailableUsername(registerUser.username);
     registerUser.password = await this._passwordHash.hash(registerUser.password);
-    const registeredUser = await this._userRepository.addUser(registerUser);
-    return registeredUser;
+    return this._userRepository.addUser(registerUser);
   }
 }
 

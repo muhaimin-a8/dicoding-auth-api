@@ -1,7 +1,7 @@
 const RegisterUser = require('../RegisterUser');
 
-describe('RegisterUser', () => {
-  it('should throw error when payload did not contain needed proerty', () => {
+describe('a RegisterUser entities', () => {
+  it('should throw error when payload did not contain needed property', () => {
     // Arrange
     const payload = {
       username: 'abc',
@@ -16,20 +16,20 @@ describe('RegisterUser', () => {
     // Arrange
     const payload = {
       username: 123,
-      password: true,
-      fullname: 'abc',
+      fullname: true,
+      password: 'abc',
     };
 
     // Action and Assert
     expect(() => new RegisterUser(payload)).toThrowError('REGISTER_USER.NOT_MEET_DATA_TYPE_SPECIFICATION');
   });
 
-  it('should throw error when username contains more than 50  character', () => {
+  it('should throw error when username contains more than 50 character', () => {
     // Arrange
     const payload = {
-      username: 'dicodingindoneisadicodingindoneisadicodingindoneisadicodingindoneisadicodingindoneisa',
+      username: 'dicodingindonesiadicodingindonesiadicodingindonesiadicoding',
       fullname: 'Dicoding Indonesia',
-      password: 'secret',
+      password: 'abc',
     };
 
     // Action and Assert
@@ -40,8 +40,8 @@ describe('RegisterUser', () => {
     // Arrange
     const payload = {
       username: 'dico ding',
-      fullname: 'Dicoding Indonesia',
-      password: 'secret',
+      fullname: 'dicoding',
+      password: 'abc',
     };
 
     // Action and Assert
@@ -53,7 +53,7 @@ describe('RegisterUser', () => {
     const payload = {
       username: 'dicoding',
       fullname: 'Dicoding Indonesia',
-      password: 'secret',
+      password: 'abc',
     };
 
     // Action

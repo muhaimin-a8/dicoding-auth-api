@@ -21,4 +21,5 @@ class UsersHandler {
     return response;
   }
 }
+
 module.exports = UsersHandler;

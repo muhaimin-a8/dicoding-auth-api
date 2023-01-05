@@ -2,6 +2,7 @@ const Hapi = require('@hapi/hapi');
 const ClientError = require('../../Commons/exceptions/ClientError');
 const DomainErrorTranslator = require('../../Commons/exceptions/DomainErrorTranslator');
 const users = require('../../Interfaces/http/api/users');
+const authentications = require('../../Interfaces/http/api/authentications');
 
 const createServer = async (container) => {
   const server = Hapi.server({
@@ -14,14 +15,21 @@ const createServer = async (container) => {
       plugin: users,
       options: { container },
     },
+    {
+      plugin: authentications,
+      options: { container },
+    },
   ]);
 
   server.ext('onPreResponse', (request, h) => {
+    // mendapatkan konteks response dari request
     const { response } = request;
 
     if (response instanceof Error) {
+      // bila response tersebut error, tangani sesuai kebutuhan
       const translatedError = DomainErrorTranslator.translate(response);
 
+      // penanganan client error secara internal.
       if (translatedError instanceof ClientError) {
         const newResponse = h.response({
           status: 'fail',
@@ -36,7 +44,7 @@ const createServer = async (container) => {
         return h.continue;
       }
 
-      // server error
+      // penanganan server error sesuai kebutuhan
       const newResponse = h.response({
         status: 'error',
         message: 'terjadi kegagalan pada server kami',
@@ -45,7 +53,7 @@ const createServer = async (container) => {
       return newResponse;
     }
 
-    // bukan error makan lanjutkan dengan response sebelumnya (tanpa terintervensi)
+    // jika bukan error, lanjutkan dengan response sebelumnya (tanpa terintervensi)
     return h.continue;
   });
 
